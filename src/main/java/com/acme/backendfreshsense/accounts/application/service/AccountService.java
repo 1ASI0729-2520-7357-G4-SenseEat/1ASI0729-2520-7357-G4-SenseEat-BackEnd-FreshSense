@@ -57,4 +57,16 @@ public class AccountService {
                 user.getRole()
         );
     }
+
+    public UserResponse getByEmail(String email) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        return new UserResponse(
+                user.getId(),
+                user.getFullName(),
+                user.getEmail(),
+                user.getRole()
+        );
+    }
 }
